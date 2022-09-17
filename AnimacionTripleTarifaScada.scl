@@ -1,0 +1,23 @@
+﻿FUNCTION "AnimacionTripleTarifaScada" : Int
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      IniPeriodo : Int;
+   END_VAR
+
+   VAR_TEMP 
+      HHMM : Real;
+      HH : Real;
+      MM : Real;
+   END_VAR
+
+
+BEGIN
+	    #HHMM := INT_TO_REAL(#IniPeriodo);
+	    #HH := TRUNC(#HHMM / 100.0);
+	    #MM := ((#HHMM / 100.0) - #HH) * 100;
+	    #MM := 100 * (#MM / 60);
+	    
+	    #AnimacionTripleTarifaScada := REAL_TO_INT(#HH * 100 + #MM);
+END_FUNCTION
+
